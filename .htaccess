@@ -1,0 +1,29 @@
+RewriteEngine on
+RewriteBase /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP
+RewriteRule ^([^.]+)\.html$ http://DOMAIN.COM/$1 [R=301,L]
+RewriteCond %{REQUEST_URI} !(\.[^./]+)$
+RewriteCond %{REQUEST_fileNAME} !-d
+RewriteCond %{REQUEST_fileNAME} !-f
+RewriteRule (.*) /$1.html [L]
+
+# Do not remove this line or mod_rewrite rules and search engine friendly URLs will stop working
+RewriteBase /
+RewriteEngine On RewriteCond %{HTTP_USER_AGENT} .*Download\ Master.* [OR]
+RewriteCond %{HTTP_USER_AGENT} .*Mass\ Downloader.* [OR]
+RewriteCond %{HTTP_USER_AGENT} .*FlashGet.* [OR]
+RewriteCond %{HTTP_USER_AGENT} .*GetRight.* [OR]
+RewriteCond %{HTTP_USER_AGENT} .*Teleport.* [OR]
+RewriteCond %{HTTP_USER_AGENT} .*Wget.* [OR]
+RewriteCond %{HTTP_USER_AGENT} .*Debug* [OR]
+RewriteCond %{HTTP_USER_AGENT} .*Debugger* [OR]
+RewriteCond %{HTTP_USER_AGENT} .*ReGet.*
+RewriteRule ^.* - [F,L]
+
+
+ErrorDocument 403 /ad.html
+# Start Pasters ban log
+# Permanent IP ban
+
+# 26.11.2017 13:45:33 /paster.php 
+Deny from 88.99.97.146 
